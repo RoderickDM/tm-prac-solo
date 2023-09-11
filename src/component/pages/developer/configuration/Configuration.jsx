@@ -10,13 +10,18 @@ const Configuration = () => {
       <Header />
       <section className="main__grid">
         <aside>
-          <Navigation />
+          <Navigation menu="configuration" submenu="configurationSampleOtp" />
         </aside>
-        <main className="py-4">
-          <BreadCrumbs />
-          <div className="py-6">
+        <main className="py-4 !max-w-[75%]">
+          <BreadCrumbs />                
+          <div className="py-6 flex items-center justify-between">                
+            <div>
             <h1 className="text-[3rem] py-2">Configuration</h1>
-            <p>Some basics for managing your OS</p>
+            <p>Some basics for managing your OS</p> 
+            </div>
+            <button className="btn btn--accent btn--sm">
+              Add
+            </button>
           </div>
           <ConfigurationTable />
         </main>

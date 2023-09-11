@@ -172,14 +172,100 @@
 }
 
 @layer components {
-  .nav_link a {
-    @apply flex items-center justify-between px-2 py-2 text-[1rem] font-bold;
+  .btn {
+    @apply flex justify-center items-center px-5 py-2  bg-primary disabled:hover:bg-primary rounded-full text-white transition-all ease-out hover:bg-accent_darker;
   }
-  .nav_link li.active {
-    @apply text-accent bg-light_gray;
+
+  .btn--cancel {
+    @apply bg-gray-200 hover:bg-gray-300 text-dark;
   }
-  .nav_link a:hover {
-    @apply bg-light_gray rounded-md;
+
+  .btn--alert {
+    @apply bg-alert hover:bg-alert_darker;
+  }
+
+  .btn--sm {
+    @apply px-3 py-1 min-w-[60px];
+  }
+
+  .tooltip {
+    @apply w-[24px] h-[24px] hover:bg-gray-200 flex justify-center items-center cursor-pointer rounded-full relative whitespace-nowrap;
+  }
+
+  .tooltip:hover::after,
+  .tooltip:hover::before {
+    @apply opacity-100;
+  }
+
+  .tooltip::after {
+    @apply content-[attr(data-tooltip)] absolute -top-[20px] text-[10px]  left-1/2  -translate-x-1/2  bg-black  bg-opacity-70 py-[4px] px-1.5 text-white  rounded-md opacity-0 leading-none;
+  }
+
+  .tooltip::before {
+    @apply content-[''] absolute w-0 h-0 -top-[2px] left-1/2 -translate-x-1/2 border-t-4 border-r-4 border-l-4 border-solid border-transparent border-t-dark/70 opacity-0;
+  }
+
+  .loading-bar::after {
+    @apply content-[''] absolute top-0 left-0 w-[180%] h-full  bg-gradient-to-r from-transparent via-[#eeeeee] to-transparent  animate-loading;
+  }
+
+  .spinner {
+    @apply animate-rotate h-[23px] w-[23px];
+  }
+
+  .modal__body::-webkit-scrollbar,
+  .custom__scroll::-webkit-scrollbar,
+  .table__wrapper::-webkit-scrollbar {
+    @apply appearance-none w-2;
+  }
+  .modal__body::-webkit-scrollbar:vertical,
+  .custom__scroll::-webkit-scrollbar:vertical,
+  .table__wrapper::-webkit-scrollbar:vertical {
+    @apply w-2;
+  }
+  .modal__body::-webkit-scrollbar:horizontal,
+  .custom__scroll::-webkit-scrollbar:horizontal,
+  .table__wrapper::-webkit-scrollbar:horizontal {
+    @apply h-2 bg-gray-200;
+  }
+  .modal__body::-webkit-scrollbar-track-piece,
+  .custom__scroll::-webkit-scrollbar-track-piece,
+  .table__wrapper::-webkit-scrollbar-track-piece {
+    @apply bg-gray-200;
+  }
+  .modal__body::-webkit-scrollbar-track,
+  .custom__scroll::-webkit-scrollbar-track,
+  .table__wrapper::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .modal__body::-webkit-scrollbar-thumb,
+  .custom__scroll::-webkit-scrollbar-thumb,
+  .table__wrapper::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 border-transparent border-8;
+  }
+
+  .breadcrumbs ul li:last-child a::after {
+    @apply hidden;
+  }
+
+  .searchbar:focus + button {
+    @apply bg-primary;
+  }
+
+  .profile__wrap p {
+    @apply mb-0;
+  }
+  .nav__link.active{
+    @apply text-accent
+  }
+  .nav__link.active .submenu__link{
+    @apply h-fit text-[1rem];
+  }
+  .nav__link .submenu__link{
+    @apply h-0 overflow-hidden;
+  }
+  .nav__link.active .submenu__link li{
+    @apply hover:bg-light_gray
   }
   .main__grid {
     @apply grid grid-cols-[0px_1fr] lg:grid-cols-[300px_1fr] min-h-[calc(100vh_-_66px)] lg:min-h-[calc(100vh_-_82px)] gap-0 lg:gap-4 transition-all;
