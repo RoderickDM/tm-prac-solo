@@ -1,0 +1,193 @@
+@font-face {
+  font-family: "interRegular";
+  /* src: url(font/Poppins-Regular.ttf) format("truetype"); */
+  src: url(/font/Inter-Regular.ttf) format("truetype");
+  font-display: fallback;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-2xl lg:text-3xl leading-snug mb-5;
+  }
+
+  h2 {
+    @apply text-2xl leading-snug mb-5;
+  }
+
+  h3 {
+    @apply text-xl leading-snug;
+  }
+
+  h4 {
+    @apply text-[14px] leading-snug;
+  }
+  p {
+    @apply mb-2;
+  }
+  body {
+    @apply leading-relaxed font-[interRegular] antialiased text-sm min-h-full text-dark;
+  }
+  table {
+    @apply border-collapse border-spacing-2 text-left w-full p-1 truncate table-auto;
+  }
+  table tr {
+    @apply border-b border-solid border-gray-300 hover:bg-gray-50 relative;
+  }
+  table td {
+    @apply p-2 truncate;
+  }
+  table td:last-child {
+    @apply lg:w-28 overflow-visible;
+  }
+  table td:first-child {
+    @apply w-5;
+  }
+  table th:first-child {
+    @apply w-7;
+  }
+  table th {
+    @apply truncate font-bold bg-gray-200 p-1.5 whitespace-nowrap;
+  }
+
+  table tr .table__action {
+    @apply static lg:hidden lg:absolute top-[4px] bg-white lg:bg-gray-50 lg:py-[2px];
+  }
+
+  table tr .table__action button {
+    @apply text-[17px];
+  }
+
+  table tr .table__action ul {
+    @apply gap-6 lg:gap-4 justify-end;
+  }
+
+  table tr .table__action::before {
+    @apply content-[attr(data-ellipsis)] absolute bg-gray-50 w-16 top-0 -left-8  h-full md:flex items-center py-[8px] px-2 !hidden;
+  }
+
+  table tr.current__user {
+    @apply bg-yellow-50 hover:bg-yellow-50;
+  }
+
+  table tr.current__user .table__action {
+    @apply bg-yellow-50;
+  }
+
+  table tr:hover .table__action {
+    @apply flex bg-gray-50 justify-end;
+  }
+
+  table tr.current__user:hover .table__action {
+    @apply bg-yellow-50 hover:bg-yellow-50 before:bg-yellow-50;
+  }
+
+  table.row__large tr td {
+    @apply py-5;
+  }
+
+  button:disabled {
+    @apply cursor-not-allowed opacity-50 hover:opacity-50;
+  }
+
+  .form__wrap {
+    @apply mb-4 relative;
+  }
+
+  .form__wrap span.error-show {
+    @apply absolute top-1 right-1 text-xs text-alert;
+  }
+
+  .form__wrap:has(.error-show) input,
+  .form__wrap:has(.error-show) select,
+  .form__wrap:has(.error-show) textarea {
+    @apply border-alert;
+  }
+
+  .form__wrap:has(.error-show) label {
+    @apply text-alert;
+  }
+
+  label {
+    @apply antialiased;
+  }
+
+  input,
+  select {
+    @apply border border-dark/50 p-2 rounded-lg w-full h-[40px] outline-none disabled:cursor-not-allowed;
+  }
+  textarea {
+    @apply block border border-solid outline-none border-dark/50 p-2 rounded-lg w-full h-40 resize-none;
+  }
+  input:disabled,
+  input:checkbox:disabled,
+  select:disabled,
+  textarea:disabled,
+  .disabled {
+    @apply bg-gray-100 border-gray-200 disabled:cursor-not-allowed !cursor-not-allowed hover:bg-gray-100 hover:text-inherit hover:border-gray-200;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    @apply border border-solid border-[#3e6fa5] outline-0;
+  }
+
+  .form__wrap:focus-within label {
+    @apply text-[#3e6fa5];
+  }
+
+  main {
+    @apply overflow-x-hidden;
+  }
+
+  aside {
+    @apply -translate-x-40 h-[calc(100vh_-_66px)] lg:h-full hover:overflow-auto lg:translate-x-0  transition-all z-20;
+  }
+
+  aside.open {
+    @apply translate-x-0 h-full;
+  }
+  ::-webkit-backface-visibility {
+    @apply invisible;
+  }
+  ::-moz-backface-visibility {
+    @apply invisible;
+  }
+  ::-ms-backface-visibility {
+    @apply invisible;
+  }
+}
+
+@layer components {
+  .nav_link a {
+    @apply flex items-center justify-between px-2 py-2 text-[1rem] font-bold;
+  }
+  .nav_link li.active {
+    @apply text-accent bg-light_gray;
+  }
+  .nav_link a:hover {
+    @apply bg-light_gray rounded-md;
+  }
+  .main__grid {
+    @apply grid grid-cols-[0px_1fr] lg:grid-cols-[300px_1fr] min-h-[calc(100vh_-_66px)] lg:min-h-[calc(100vh_-_82px)] gap-0 lg:gap-4 transition-all;
+  }
+  .card {
+    @apply border-2 w-[450px] p-8 rounded-lg shadow-md;
+  }
+  .card:hover {
+    @apply border-accent;
+  }
+}
