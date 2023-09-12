@@ -9,6 +9,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.container{
+  margin: 0 auto;
+}
+
 @layer base {
   h1,
   h2,
@@ -169,7 +173,9 @@
   ::-ms-backface-visibility {
     @apply invisible;
   }
-}
+} 
+
+
 
 @layer components {
   .btn {
@@ -268,13 +274,13 @@
     @apply hover:bg-light_gray;
   }
   .main__grid {
-    @apply grid grid-cols-[0px_1fr] sm:mx-4 lg:mx-0 lg:grid-cols-[300px_1fr] min-h-[calc(100vh_-_66px)] lg:min-h-[calc(100vh_-_82px)] gap-0 lg:gap-4 transition-all;
+    @apply grid grid-cols-[0px_1fr] sm:mx-4 lg:mx-0 lg:grid-cols-[300px_75%] min-h-[calc(100vh_-_66px)] lg:min-h-[calc(100vh_-_82px)] gap-0 lg:gap-4 transition-all;
   }
   .list__grid {
     @apply grid grid-cols-1 w-full lg:grid-cols-[1fr_1fr] gap-4;
   }
   .card {
-    @apply border-2 lg:max-w-[430px] p-2 rounded-lg shadow-md;
+    @apply border-2 lg:max-w-[460px] p-2 rounded-lg shadow-md;
   }
   .card:hover {
     @apply border-accent opacity-70;

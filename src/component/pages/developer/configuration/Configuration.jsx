@@ -27,9 +27,11 @@ const Configuration = () => {
         <aside>
           <Navigation menu="configuration" submenu="configurationSampleOtp" />
         </aside>
-        <main className="py-3 lg:!max-w-[75%]">
-          <BreadCrumbs />
-          <div className="py-6 flex items-center justify-between">
+        <main className="py-3">
+          <div className="container">
+            <div className="lg:max-w-[75%]">
+            <BreadCrumbs />
+          <div className="py-6 mr-3 flex items-center justify-between">
             <div>
               <h1 className="text-[3rem]">Configuration</h1>
               <p className="pt-4">Some basics for managing your OS</p>
@@ -39,6 +41,8 @@ const Configuration = () => {
             </button>
           </div>
           <ConfigurationList setItemEdit={setItemEdit} />
+          </div>    
+            </div>   
         </main>
       </section>
 
