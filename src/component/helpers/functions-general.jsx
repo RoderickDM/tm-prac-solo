@@ -3,7 +3,7 @@ import { setIsAdd } from "../../store/StoreAction";
 import { StoreContext } from "../../store/StoreContext";
 
 // CYCY url // cyrenemlumabas@gmail.com
-export const urlPathTm = "http://localhost/training/tm-practice";
+export const urlPathTm = "http://localhost/training/tm-prac-solo";
 export const imgUrlPathTm = "http://localhost/training/tm-practice/public/img";
 
 // // Patrick

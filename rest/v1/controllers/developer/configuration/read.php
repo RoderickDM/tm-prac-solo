@@ -3,19 +3,19 @@
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$department = new Department($conn);
+$configuration = new Configuration($conn);
 // get $_GET data 
 
-if (array_key_exists("departmentId", $_GET) ) {
-    $department->department_aid = $_GET['departmentId'];
-    checkId($department->department_aid);
-    $query = checkReadById($department);
+if (array_key_exists("configurationId", $_GET) ) {
+    $configuration->configuration_aid = $_GET['configurationId'];
+    checkId($configuration->configuration_aid);
+    $query = checkReadById($configuration);
     http_response_code(200);
     getQueriedData($query);
 }
 
 if (empty($_GET)) {
-    $query = checkReadAll($department);
+    $query = checkReadAll($configuration);
     http_response_code(200);
     getQueriedData($query);
      

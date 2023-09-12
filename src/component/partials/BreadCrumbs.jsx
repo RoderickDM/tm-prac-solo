@@ -5,10 +5,10 @@ import { BsChevronRight } from "react-icons/bs";
 const BreadCrumbs = () => {
   return (
     <>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-4 pl-4">
         <AiFillHome />
-        <BsChevronRight />
-        <span className="text-[.8rem] bg-gray-100 rounded-full p-2 text-accent">
+        <BsChevronRight className="text-[10px]" />
+        <span className="text-[.7rem] bg-gray-100 rounded-full px-3 py-2 text-accent">
           Configuration
         </span>
       </div>

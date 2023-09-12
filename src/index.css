@@ -255,25 +255,28 @@
   .profile__wrap p {
     @apply mb-0;
   }
-  .nav__link.active{
-    @apply text-accent
+  .nav__link.active {
+    @apply text-accent;
   }
-  .nav__link.active .submenu__link{
+  .nav__link.active .submenu__link {
     @apply h-fit text-[1rem];
   }
-  .nav__link .submenu__link{
+  .nav__link .submenu__link {
     @apply h-0 overflow-hidden;
   }
-  .nav__link.active .submenu__link li{
-    @apply hover:bg-light_gray
+  .nav__link.active .submenu__link li {
+    @apply hover:bg-light_gray;
   }
   .main__grid {
-    @apply grid grid-cols-[0px_1fr] lg:grid-cols-[300px_1fr] min-h-[calc(100vh_-_66px)] lg:min-h-[calc(100vh_-_82px)] gap-0 lg:gap-4 transition-all;
+    @apply grid grid-cols-[0px_1fr] sm:mx-4 lg:mx-0 lg:grid-cols-[300px_1fr] min-h-[calc(100vh_-_66px)] lg:min-h-[calc(100vh_-_82px)] gap-0 lg:gap-4 transition-all;
+  }
+  .list__grid {
+    @apply grid grid-cols-1 w-full lg:grid-cols-[1fr_1fr] gap-4;
   }
   .card {
-    @apply border-2 w-[450px] p-8 rounded-lg shadow-md;
+    @apply border-2 lg:max-w-[430px] p-2 rounded-lg shadow-md;
   }
   .card:hover {
-    @apply border-accent;
+    @apply border-accent opacity-70;
   }
 }

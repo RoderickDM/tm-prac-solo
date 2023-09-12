@@ -6,7 +6,7 @@ import Logo from "../svg/Logo";
 const Header = () => {
   return (
     <>
-      <div className="flex justify-between mx-2 p-4 font-bold text-[1rem] border-b-2">
+      <div className="flex justify-between p-4 font-bold text-[.9rem] border-b-2">
         <div className="flex gap-6 items-center">
           <div className="lg:hidden md:block sm:block">
             <span className="block w-6 h-1 bg-accent rounded-md"></span>
@@ -16,10 +16,10 @@ const Header = () => {
           <Logo />
           <ul className="lg:flex gap-6 items-center sm:hidden">
             <li className="text-accent">
-              <a href="">Documentation</a>
+              <a href="#">Documentation</a>
             </li>
             <li>
-              <a href="" className="hover:text-accent">
+              <a href="#" className="hover:text-accent">
                 Download
               </a>
             </li>
