@@ -9,6 +9,8 @@ import Header from "../../../partials/Header";
 import Navigation from "../../../partials/Navigation";
 import ConfigurationList from "./ConfigurationList";
 import ModalAddConfiguration from "./ModalAddConfiguration";
+import ModalValidate from "../../../partials/modals/ModalValidate";
+import Toast from "../../../partials/Toast";
 
 const Configuration = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -53,6 +55,9 @@ const Configuration = () => {
       </section>
 
       {store.isAdd && <ModalAddConfiguration itemEdit={itemEdit} />}
+      {store.validate && <ModalValidate />}
+
+      {store.success && <Toast />}
     </>
   );
 };
