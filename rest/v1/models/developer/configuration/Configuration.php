@@ -10,6 +10,10 @@ class Configuration
 
     public $employee_aid;
 
+    public $configuration_start;
+    public $configuration_total;
+    public $configuration_search;
+
     public $connection;
     public $lastInsertedId;
     public $tblConfiguration;
@@ -56,8 +60,7 @@ class Configuration
         try {
             $sql = "select ";
             $sql .= "* ";
-            $sql .= "from ";
-            $sql .= " {$this->tblConfiguration} ";
+            $sql .= "from {$this->tblConfiguration} ";
             $sql .= "order by configuration_is_active desc, ";
             $sql .= "configuration_title asc ";
             $query = $this->connection->query($sql);
@@ -66,6 +69,48 @@ class Configuration
         }
         return $query;
     }
+
+    public function readLimit()
+    {
+        try {
+            $sql = "select ";
+            $sql .= "* ";
+            $sql .= "from {$this->tblConfiguration} ";
+            $sql .= "order by configuration_is_active desc, ";
+            $sql .= "configuration_title asc ";
+            $sql .= "limit :start, ";
+            $sql .= ":total ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "start" => $this->configuration_start - 1,
+                "total" => $this->configuration_total,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+     //search
+     public function search()
+     {
+         try {
+             $sql = "select ";
+             $sql .= "* ";
+             $sql .= "from {$this->tblConfiguration} ";
+             $sql .= "where configuration_title like :search ";
+             $sql .= "order by configuration_is_active desc, ";
+             $sql .= "configuration_title asc ";
+             $query = $this->connection->prepare($sql);
+             $query->execute([
+                 "search" => "%{$this->configuration_search}%",
+             ]);
+         }  catch (PDOException $ex) {
+             $query = false;
+         }
+         return $query;
+         
+     }
  
 
     // read by id

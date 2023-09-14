@@ -28,6 +28,7 @@ const initVal = {
   isToolsOpen: false,
   isSettingsOpen: false,
   isConfigurationOpen: false,
+  IsNavigationOpen: false,
 };
 
 const StoreContext = React.createContext();

@@ -1,14 +1,9 @@
 import React from "react";
 import { BsChevronRight } from "react-icons/bs";
-import {
-  setIsSearch,
-  setIsConfigurationOpen,
-  setIsShow,
-  setIsToolsOpen,
-} from "../../store/StoreAction";
+import { Link } from "react-router-dom";
+import { setIsConfigurationOpen } from "../../store/StoreAction";
 import { StoreContext } from "../../store/StoreContext";
 import { devNavUrl } from "../helpers/functions-general";
-import { Link } from "react-router-dom";
 
 const Navigation = ({
   menu,
@@ -18,14 +13,6 @@ const Navigation = ({
 }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const urlRolePath = `${devNavUrl}`;
-  const handleShow = () => {
-    dispatch(setIsShow(!store.isShow));
-    dispatch(setIsSearch(false));
-  };
-
-  const handleDropDownTool = (e) => {
-    dispatch(setIsToolsOpen(!store.isToolsOpen));
-  };
 
   const handleDropDownConfiguration = (e) => {
     dispatch(setIsConfigurationOpen(!store.isConfigurationOpen));

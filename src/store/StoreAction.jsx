@@ -187,3 +187,10 @@ export const setIsConfigurationOpen = (val) => {
     payload: val,
   };
 };
+
+export const setIsNavigationOpen = (val) => {
+  return {
+    type: "IS_NAVIGATION_OPEN",
+    payload: val,
+  };
+};

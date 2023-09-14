@@ -9,7 +9,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.container{
+.container {
   margin: 0 auto;
 }
 
@@ -173,9 +173,7 @@
   ::-ms-backface-visibility {
     @apply invisible;
   }
-} 
-
-
+}
 
 @layer components {
   .btn {
