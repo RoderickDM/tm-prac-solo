@@ -188,6 +188,13 @@ export const setIsConfigurationOpen = (val) => {
   };
 };
 
+export const setIsInstallationOpen = (val) => {
+  return {
+    type: "IS_INSTALLATION_OPEN",
+    payload: val,
+  };
+};
+
 export const setIsNavigationOpen = (val) => {
   return {
     type: "IS_NAVIGATION_OPEN",

@@ -18,6 +18,10 @@ const Navigation = ({
     dispatch(setIsConfigurationOpen(!store.isConfigurationOpen));
   };
 
+  const handleDropDownInstallation = (e) => {
+    dispatch(setIsConfigurationOpen(!store.isConfigurationOpen));
+  };
+
   return (
     <>
       <div className="bg-white text-guray h-full p-1 border-r-2 font-bold">
@@ -204,6 +208,27 @@ const Navigation = ({
                 </Link>
               </li>
             </ul>
+          </li>
+          <li className={`nav__link ${store.isInstallationOpen && "active"}`}>
+            <button
+              className={`${
+                menu === "installation" ? "bg-gray-100" : ""
+              } w-full p-2`}
+              // onClick={() => handleDropDownInstallation()}
+            >
+              <Link to={`${urlRolePath}/installation`}>
+                <div className="flex justify-between items-center w-full">
+                  <div className="flex gap-3 items-center ">
+                    <span className="text-[1rem]">Installation</span>
+                  </div>
+                  <BsChevronRight
+                    className={`text-lg font-bold
+                    ${!store.isInstallationOpen ? "rotate-0" : "rotate-90"}
+                  `}
+                  />
+                </div>
+              </Link>
+            </button>
           </li>
         </ul>
       </div>

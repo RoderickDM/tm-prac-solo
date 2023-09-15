@@ -7,13 +7,14 @@ import { StoreContext } from "../../../../store/StoreContext";
 import BreadCrumbs from "../../../partials/BreadCrumbs";
 import Header from "../../../partials/Header";
 import Navigation from "../../../partials/Navigation";
-import ConfigurationList from "./ConfigurationList";
-import ModalAddConfiguration from "./ModalAddConfiguration";
+import ConfigurationList from "./InstallationList";
+import ModalAddConfiguration from "./ModalAddInstallation";
 import ModalValidate from "../../../partials/modals/ModalValidate";
 import Toast from "../../../partials/Toast";
-import ConfigurationTable from "./ConfigurationTable";
+import InstallationList from "./InstallationList";
+import ModalAddInstallation from "./ModalAddInstallation";
 
-const Configuration = () => {
+const Installation = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [itemEdit, setItemEdit] = React.useState(null);
 
@@ -30,7 +31,7 @@ const Configuration = () => {
       <Header />
       <section className="main__grid">
         <aside className={store.isNavigationOpen ? "active" : ""}>
-          <Navigation menu="configuration" submenu="configurationSampleOtp" />
+          <Navigation menu="installation" />
         </aside>
         <main className="py-3">
           <div className="container">
@@ -38,9 +39,12 @@ const Configuration = () => {
               <BreadCrumbs />
               <div className="py-6">
                 <div>
-                  <h1 className="text-[3rem]">Configuration</h1>
+                  <h1 className="text-[3rem]">Installation</h1>
                   <div className="flex justify-between items-center">
-                    <p className="pt-4">Some basics for managing your OS</p>
+                    <p className="pt-4">
+                      How to install ParrotOS on your computer? Follow these
+                      guides step by step.
+                    </p>
                     <button
                       className="btn btn--accent btn--sm"
                       onClick={handleAdd}
@@ -50,14 +54,13 @@ const Configuration = () => {
                   </div>
                 </div>
               </div>
-              <ConfigurationList setItemEdit={setItemEdit} />
-              {/* <ConfigurationTable setItemEdit={setItemEdit} /> */}
+              <InstallationList setItemEdit={setItemEdit} />
             </div>
           </div>
         </main>
       </section>
 
-      {store.isAdd && <ModalAddConfiguration itemEdit={itemEdit} />}
+      {store.isAdd && <ModalAddInstallation itemEdit={itemEdit} />}
       {store.validate && <ModalValidate />}
 
       {store.success && <Toast />}
@@ -65,4 +68,4 @@ const Configuration = () => {
   );
 };
 
-export default Configuration;
+export default Installation;

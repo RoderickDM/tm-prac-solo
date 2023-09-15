@@ -156,6 +156,12 @@ export const StoreReducer = (state, action) => {
         isConfigurationOpen: action.payload,
       };
 
+    case "IS_INSTALLATION_OPEN":
+      return {
+        ...state,
+        isInstallationOpen: action.payload,
+      };
+
     case "IS_NAVIGATION_OPEN":
       return {
         ...state,
