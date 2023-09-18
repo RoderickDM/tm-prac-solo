@@ -56,7 +56,7 @@ const Navigation = ({
                 }`}
               >
                 <Link
-                  to={`${urlRolePath}/configuration/sampleOtp`}
+                  to={`${urlRolePath}/configuration`}
                   className={`text-guray hover:!border-accent duration-150 pl-2 w-fit inline-block py-1 ${
                     submenu === "configurationSampleOtp"
                       ? "active__submenu"
@@ -74,7 +74,7 @@ const Navigation = ({
                 }`}
               >
                 <Link
-                  to={`${urlRolePath}/configuration/sampleOtp`}
+                  to={`${urlRolePath}/configuration`}
                   className={`text-guray hover:!border-accent duration-150 pl-2 w-fit inline-block py-1 ${
                     submenu === "configurationSampleOtp"
                       ? "active__submenu"
@@ -92,7 +92,7 @@ const Navigation = ({
                 }`}
               >
                 <Link
-                  to={`${urlRolePath}/configuration/sampleOtp`}
+                  to={`${urlRolePath}/configuration`}
                   className={`text-guray hover:!border-accent duration-150 pl-2 w-fit inline-block py-1 ${
                     submenu === "configurationSampleOtp"
                       ? "active__submenu"
@@ -110,7 +110,7 @@ const Navigation = ({
                 }`}
               >
                 <Link
-                  to={`${urlRolePath}/configuration/sampleOtp`}
+                  to={`${urlRolePath}/configuration`}
                   className={`text-guray hover:!border-accent duration-150 pl-2 w-fit inline-block py-1 ${
                     submenu === "configurationSampleOtp"
                       ? "active__submenu"
@@ -128,7 +128,7 @@ const Navigation = ({
                 }`}
               >
                 <Link
-                  to={`${urlRolePath}/configuration/sampleOtp`}
+                  to={`${urlRolePath}/configuration`}
                   className={`text-guray hover:!border-accent duration-150 pl-2 w-fit inline-block py-1 ${
                     submenu === "configurationSampleOtp"
                       ? "active__submenu"
@@ -146,7 +146,7 @@ const Navigation = ({
                 }`}
               >
                 <Link
-                  to={`${urlRolePath}/configuration/sampleOtp`}
+                  to={`${urlRolePath}/configuration`}
                   className={`text-guray hover:!border-accent duration-150 pl-2 w-fit inline-block py-1 ${
                     submenu === "configurationSampleOtp"
                       ? "active__submenu"
@@ -164,7 +164,7 @@ const Navigation = ({
                 }`}
               >
                 <Link
-                  to={`${urlRolePath}/configuration/sampleOtp`}
+                  to={`${urlRolePath}/configuration`}
                   className={`text-guray hover:!border-accent duration-150 pl-2 w-fit inline-block py-1 ${
                     submenu === "configurationSampleOtp"
                       ? "active__submenu"
@@ -182,7 +182,7 @@ const Navigation = ({
                 }`}
               >
                 <Link
-                  to={`${urlRolePath}/configuration/sampleOtp`}
+                  to={`${urlRolePath}/configuration`}
                   className={`text-guray hover:!border-accent duration-150 pl-2 w-fit inline-block py-1 ${
                     submenu === "configurationSampleOtp"
                       ? "active__submenu"
@@ -200,7 +200,7 @@ const Navigation = ({
                 }`}
               >
                 <Link
-                  to={`${urlRolePath}/configuration/sampleOtp`}
+                  to={`${urlRolePath}/configuration`}
                   className={`text-guray hover:!border-accent duration-150 pl-2 w-fit inline-block py-1 ${
                     submenu === "configurationSampleOtp"
                       ? "active__submenu"

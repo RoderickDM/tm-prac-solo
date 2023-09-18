@@ -157,16 +157,12 @@ const ConfigurationList = ({ setItemEdit }) => {
                         <Link
                           to={`${devNavUrl}/configuration/information?configurationId=${item.configuration_aid}`}
                         >
-                          <button
-                            className="tooltip"
-                            data-tooltip="View"
-                            // onClick={() => handleEdit(item)}
-                          >
+                          <button className="tooltip" data-tooltip="View">
                             <GrView />
                           </button>
                         </Link>
                       </li>
-                      <li>
+                      {/* <li>
                         <button
                           className="tooltip"
                           data-tooltip="Edit"
@@ -174,7 +170,7 @@ const ConfigurationList = ({ setItemEdit }) => {
                         >
                           <FiEdit3 />
                         </button>
-                      </li>
+                      </li> */}
                       <li>
                         <button
                           className="tooltip"
@@ -187,6 +183,15 @@ const ConfigurationList = ({ setItemEdit }) => {
                     </ul>
                   ) : (
                     <ul className="flex justify-end">
+                      <li>
+                        <Link
+                          to={`${devNavUrl}/configuration/information?configurationId=${item.configuration_aid}`}
+                        >
+                          <button className="tooltip" data-tooltip="View">
+                            <GrView />
+                          </button>
+                        </Link>
+                      </li>
                       <li>
                         <button
                           className="tooltip"

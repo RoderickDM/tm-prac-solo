@@ -157,12 +157,8 @@ const InstallationList = ({ setItemEdit }) => {
                         <Link
                           to={`${devNavUrl}/installation/information?installationId=${item.installation_aid}`}
                         >
-                          <button
-                            className="tooltip"
-                            data-tooltip="View"
-                            // onClick={() => handleEdit(item)}
-                          >
-                            <GrView />  
+                          <button className="tooltip" data-tooltip="View">
+                            <GrView />
                           </button>
                         </Link>
                       </li>
@@ -187,6 +183,15 @@ const InstallationList = ({ setItemEdit }) => {
                     </ul>
                   ) : (
                     <ul className="flex justify-end">
+                      <li>
+                        <Link
+                          to={`${devNavUrl}/installation/information?installationId=${item.installation_aid}`}
+                        >
+                          <button className="tooltip" data-tooltip="View">
+                            <GrView />
+                          </button>
+                        </Link>
+                      </li>
                       <li>
                         <button
                           className="tooltip"
