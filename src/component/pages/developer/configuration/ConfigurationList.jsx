@@ -3,6 +3,7 @@ import React from "react";
 import { BsFileEarmarkText } from "react-icons/bs";
 import { FiArchive, FiEdit3 } from "react-icons/fi";
 import { MdRestore } from "react-icons/md";
+import { GrView } from "react-icons/gr";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useInView } from "react-intersection-observer";
 import {
@@ -21,6 +22,8 @@ import ModalDeleteAndRestore from "../../../partials/modals/ModalDeleteAndRestor
 import TableSpinner from "../../../partials/spinners/TableSpinner.jsx";
 import Loadmore from "../../../partials/Loadmore.jsx";
 import TableLoading from "../../../partials/TableLoading.jsx";
+import { devNavUrl } from "../../../helpers/functions-general.jsx";
+import { Link } from "react-router-dom";
 // import { consoleLog } from "../../../helpers/functions-general.jsx";
 
 const ConfigurationList = ({ setItemEdit }) => {
@@ -150,6 +153,19 @@ const ConfigurationList = ({ setItemEdit }) => {
                 <div className="card" key={key}>
                   {item.configuration_is_active === 1 ? (
                     <ul className="flex justify-end">
+                      <li>
+                        <Link
+                          to={`${devNavUrl}/configuration/information?configurationId=${item.configuration_aid}`}
+                        >
+                          <button
+                            className="tooltip"
+                            data-tooltip="View"
+                            // onClick={() => handleEdit(item)}
+                          >
+                            <GrView />
+                          </button>
+                        </Link>
+                      </li>
                       <li>
                         <button
                           className="tooltip"

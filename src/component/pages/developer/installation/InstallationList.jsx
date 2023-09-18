@@ -3,6 +3,7 @@ import React from "react";
 import { BsFileEarmarkText } from "react-icons/bs";
 import { FiArchive, FiEdit3 } from "react-icons/fi";
 import { MdRestore } from "react-icons/md";
+import { GrView } from "react-icons/gr";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useInView } from "react-intersection-observer";
 import {
@@ -12,15 +13,17 @@ import {
 } from "../../../../store/StoreAction.jsx";
 import { StoreContext } from "../../../../store/StoreContext.jsx";
 import { queryDataInfinite } from "../../../helpers/queryDataInfinite.jsx";
+import Loadmore from "../../../partials/Loadmore.jsx";
 import Nodata from "../../../partials/NoData.jsx";
 import Pills from "../../../partials/Pills.jsx";
 import SearchBar from "../../../partials/SearchBar.jsx";
 import ServerError from "../../../partials/ServerError.jsx";
+import TableLoading from "../../../partials/TableLoading.jsx";
 import ModalConfirm from "../../../partials/modals/ModalConfirm.jsx";
 import ModalDeleteAndRestore from "../../../partials/modals/ModalDeleteAndRestore.jsx";
 import TableSpinner from "../../../partials/spinners/TableSpinner.jsx";
-import Loadmore from "../../../partials/Loadmore.jsx";
-import TableLoading from "../../../partials/TableLoading.jsx";
+import { Link } from "react-router-dom";
+import { devNavUrl } from "../../../helpers/functions-general.jsx";
 // import { consoleLog } from "../../../helpers/functions-general.jsx";
 
 const InstallationList = ({ setItemEdit }) => {
@@ -151,6 +154,19 @@ const InstallationList = ({ setItemEdit }) => {
                   {item.installation_is_active === 1 ? (
                     <ul className="flex justify-end">
                       <li>
+                        <Link
+                          to={`${devNavUrl}/installation/information?installationId=${item.installation_aid}`}
+                        >
+                          <button
+                            className="tooltip"
+                            data-tooltip="View"
+                            // onClick={() => handleEdit(item)}
+                          >
+                            <GrView />
+                          </button>
+                        </Link>
+                      </li>
+                      {/* <li>
                         <button
                           className="tooltip"
                           data-tooltip="Edit"
@@ -158,7 +174,7 @@ const InstallationList = ({ setItemEdit }) => {
                         >
                           <FiEdit3 />
                         </button>
-                      </li>
+                      </li> */}
                       <li>
                         <button
                           className="tooltip"

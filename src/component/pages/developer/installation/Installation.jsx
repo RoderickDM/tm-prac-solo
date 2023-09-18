@@ -7,10 +7,8 @@ import { StoreContext } from "../../../../store/StoreContext";
 import BreadCrumbs from "../../../partials/BreadCrumbs";
 import Header from "../../../partials/Header";
 import Navigation from "../../../partials/Navigation";
-import ConfigurationList from "./InstallationList";
-import ModalAddConfiguration from "./ModalAddInstallation";
-import ModalValidate from "../../../partials/modals/ModalValidate";
 import Toast from "../../../partials/Toast";
+import ModalValidate from "../../../partials/modals/ModalValidate";
 import InstallationList from "./InstallationList";
 import ModalAddInstallation from "./ModalAddInstallation";
 

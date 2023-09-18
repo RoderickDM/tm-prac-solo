@@ -1,7 +1,10 @@
 import React from "react";
 import { BsChevronRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { setIsConfigurationOpen } from "../../store/StoreAction";
+import {
+  setIsConfigurationOpen,
+  setIsInstallationOpen,
+} from "../../store/StoreAction";
 import { StoreContext } from "../../store/StoreContext";
 import { devNavUrl } from "../helpers/functions-general";
 
@@ -19,7 +22,7 @@ const Navigation = ({
   };
 
   const handleDropDownInstallation = (e) => {
-    dispatch(setIsConfigurationOpen(!store.isConfigurationOpen));
+    dispatch(setIsInstallationOpen(!store.isInstallationOpen));
   };
 
   return (
@@ -214,7 +217,7 @@ const Navigation = ({
               className={`${
                 menu === "installation" ? "bg-gray-100" : ""
               } w-full p-2`}
-              // onClick={() => handleDropDownInstallation()}
+              onClick={() => handleDropDownInstallation()}
             >
               <Link to={`${urlRolePath}/installation`}>
                 <div className="flex justify-between items-center w-full">
@@ -222,9 +225,10 @@ const Navigation = ({
                     <span className="text-[1rem]">Installation</span>
                   </div>
                   <BsChevronRight
-                    className={`text-lg font-bold
-                    ${!store.isInstallationOpen ? "rotate-0" : "rotate-90"}
-                  `}
+                    className="text-lg font-bold"
+                    //   className={`text-lg font-bold
+                    //   ${!store.isInstallationOpen ? "rotate-0" : "rotate-90"}
+                    // `}
                   />
                 </div>
               </Link>
