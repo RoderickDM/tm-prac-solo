@@ -162,7 +162,7 @@ const InstallationList = ({ setItemEdit }) => {
                             data-tooltip="View"
                             // onClick={() => handleEdit(item)}
                           >
-                            <GrView />
+                            <GrView />  
                           </button>
                         </Link>
                       </li>
