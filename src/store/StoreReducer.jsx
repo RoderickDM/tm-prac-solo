@@ -156,6 +156,12 @@ export const StoreReducer = (state, action) => {
         isConfigurationOpen: action.payload,
       };
 
+    case "IS_CLOUD_OPEN":
+      return {
+        ...state,
+        isCloudOpen: action.payload,
+      };
+
     case "IS_INSTALLATION_OPEN":
       return {
         ...state,

@@ -33,6 +33,8 @@ function App() {
               path={`/${devNavUrl}/installation/information`}
               element={<InstallationInfo />}
             />
+            <Route path={`/${devNavUrl}/tools`} element={<Installation />} />
+            <Route path={`/${devNavUrl}/cloud`} element={<Installation />} />
           </Routes>
         </Router>
       </StoreProvider>

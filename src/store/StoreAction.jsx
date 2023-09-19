@@ -174,13 +174,6 @@ export const setIsRefresh = (data) => {
   };
 };
 
-export const setIsToolsOpen = (val) => {
-  return {
-    type: "IS_TOOLS_OPEN",
-    payload: val,
-  };
-};
-
 export const setIsConfigurationOpen = (val) => {
   return {
     type: "IS_CONFIGURATION_OPEN",
@@ -188,9 +181,22 @@ export const setIsConfigurationOpen = (val) => {
   };
 };
 
+export const setIsCloudOpen = (val) => {
+  return {
+    type: "IS_CLOUD_OPEN",
+    payload: val,
+  };
+};
 export const setIsInstallationOpen = (val) => {
   return {
     type: "IS_INSTALLATION_OPEN",
+    payload: val,
+  };
+};
+
+export const setIsToolsOpen = (val) => {
+  return {
+    type: "IS_TOOLS_OPEN",
     payload: val,
   };
 };

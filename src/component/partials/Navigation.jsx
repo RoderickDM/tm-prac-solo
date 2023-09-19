@@ -2,8 +2,10 @@ import React from "react";
 import { BsChevronRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import {
+  setIsCloudOpen,
   setIsConfigurationOpen,
   setIsInstallationOpen,
+  setIsToolsOpen,
 } from "../../store/StoreAction";
 import { StoreContext } from "../../store/StoreContext";
 import { devNavUrl } from "../helpers/functions-general";
@@ -23,6 +25,13 @@ const Navigation = ({
 
   const handleDropDownInstallation = (e) => {
     dispatch(setIsInstallationOpen(!store.isInstallationOpen));
+  };
+  const handleDropDownTools = (e) => {
+    dispatch(setIsToolsOpen(!store.isToolsOpen));
+  };
+
+  const handleDropDownCloud = (e) => {
+    dispatch(setIsCloudOpen(!store.isCloudOpen));
   };
 
   return (
@@ -212,6 +221,26 @@ const Navigation = ({
               </li>
             </ul>
           </li>
+          <li className={`nav__link ${store.isCloudOpen && "active"}`}>
+            <button
+              className={`${menu === "cloud" ? "bg-gray-100" : ""} w-full p-2`}
+              onClick={() => handleDropDownCloud()}
+            >
+              <Link to={`${urlRolePath}/cloud`}>
+                <div className="flex justify-between items-center w-full">
+                  <div className="flex gap-3 items-center ">
+                    <span className="text-[1rem]">Cloud</span>
+                  </div>
+                  <BsChevronRight
+                    className="text-lg font-bold"
+                    //   className={`text-lg font-bold
+                    //   ${!store.isInstallationOpen ? "rotate-0" : "rotate-90"}
+                    // `}
+                  />
+                </div>
+              </Link>
+            </button>
+          </li>
           <li className={`nav__link ${store.isInstallationOpen && "active"}`}>
             <button
               className={`${
@@ -223,6 +252,26 @@ const Navigation = ({
                 <div className="flex justify-between items-center w-full">
                   <div className="flex gap-3 items-center ">
                     <span className="text-[1rem]">Installation</span>
+                  </div>
+                  <BsChevronRight
+                    className="text-lg font-bold"
+                    //   className={`text-lg font-bold
+                    //   ${!store.isInstallationOpen ? "rotate-0" : "rotate-90"}
+                    // `}
+                  />
+                </div>
+              </Link>
+            </button>
+          </li>
+          <li className={`nav__link ${store.isToolsOpen && "active"}`}>
+            <button
+              className={`${menu === "tools" ? "bg-gray-100" : ""} w-full p-2`}
+              onClick={() => handleDropDownTools()}
+            >
+              <Link to={`${urlRolePath}/tools`}>
+                <div className="flex justify-between items-center w-full">
+                  <div className="flex gap-3 items-center ">
+                    <span className="text-[1rem]">Tools</span>
                   </div>
                   <BsChevronRight
                     className="text-lg font-bold"

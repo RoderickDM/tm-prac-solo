@@ -28,6 +28,7 @@ const initVal = {
   isToolsOpen: false,
   isSettingsOpen: false,
   isConfigurationOpen: false,
+  isCloudOpen: false,
   isInstallationOpen: false,
   IsNavigationOpen: false,
 };
