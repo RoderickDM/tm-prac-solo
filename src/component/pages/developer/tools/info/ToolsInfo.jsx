@@ -10,29 +10,29 @@ import Navigation from "../../../../partials/Navigation";
 import { getUrlParam } from "../../../../helpers/functions-general";
 import useQueryData from "../../../../custom-hooks/useQueryData";
 import { FiEdit3 } from "react-icons/fi";
-import ModalAddInstallation from "../ModalAddInstallation";
+import ModalAddInstallation from "../ModalAddTools";
 import ModalValidate from "../../../../partials/modals/ModalValidate";
 import Toast from "../../../../partials/Toast";
 import TableSpinner from "../../../../partials/spinners/TableSpinner";
 import TableLoading from "../../../../partials/TableLoading";
 import ServerError from "../../../../partials/ServerError";
 
-const InstallationInfo = () => {
+const ToolsInfo = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [itemEdit, setItemEdit] = React.useState(null);
-  const installationId = getUrlParam().get("installationId");
+  const toolsId = getUrlParam().get("toolsId");
 
   const {
     isLoading,
     isFetching,
     error,
-    data: installation,
+    data: tools,
   } = useQueryData(
-    `/v1/controllers/developer/installation/installation.php?installationId=${installationId}`, // endpoint
+    `/v1/controllers/developer/tools/tools.php?toolsId=${toolsId}`, // endpoint
     "get", // method
-    "installation" // key
+    "tools" // key
   );
-  console.log("123", installation?.error);
+  console.log("123", tools?.error);
 
   React.useEffect(() => {
     dispatch(setIsConfigurationOpen(true));
@@ -53,20 +53,20 @@ const InstallationInfo = () => {
         <main className="py-3">
           <div className="container">
             <div className="lg:max-w-[75%]">
-              <BreadCrumbs />
+              <BreadCrumbs param={location.search} />
               <div className="py-6">
                 <div>
-                  <h1 className="text-[3rem]">Installation Info</h1>
+                  <h1 className="text-[3rem]">Tools Information</h1>
                 </div>
               </div>
-              {installation?.error ? (
+              {tools?.error ? (
                 <div>
                   <ServerError />
                 </div>
               ) : (
                 <>
                   {isFetching && !isLoading && <TableSpinner />}
-                  {(isLoading || installation?.data.length === 0) && (
+                  {(isLoading || tools?.data.length === 0) && (
                     <div className="text-center">
                       {isLoading ? (
                         <>
@@ -104,7 +104,7 @@ const InstallationInfo = () => {
                     </div>
                   ) : (
                     <>
-                      {installation?.data.map((item, key) => {
+                      {tools?.data.map((item, key) => {
                         return (
                           <div
                             className="info_card py-8 px-4 relative"
@@ -119,11 +119,11 @@ const InstallationInfo = () => {
                             </button>
                             <div className="flex items-center gap-2 text-sm mb-2 truncate">
                               <h4>Title:</h4>
-                              <span>{item.installation_title}</span>
+                              <span>{item.tools_title}</span>
                             </div>
                             <div className="flex items-center gap-2 text-sm truncate">
                               <h4>Description:</h4>
-                              <span>{item.installation_description}</span>
+                              <span>{item.tools_description}</span>
                             </div>
                           </div>
                         );
@@ -144,4 +144,4 @@ const InstallationInfo = () => {
   );
 };
 
-export default InstallationInfo;
+export default ToolsInfo;

@@ -4,23 +4,38 @@ import { FiArchive, FiEdit3 } from "react-icons/fi";
 import { MdRestore } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useInView } from "react-intersection-observer";
-
-import SearchBar from "../../../partials/SearchBar.jsx";
-import TableLoading from "../../../partials/TableLoading.jsx";
-import Nodata from "../../../partials/NoData.jsx";
-import ServerError from "../../../partials/ServerError.jsx";
-import Pills from "../../../partials/Pills.jsx";
-import Loadmore from "../../../partials/Loadmore.jsx";
-import { StoreContext } from "../../../../store/StoreContext.jsx";
+import { queryDataInfinite } from "../../../../helpers/queryDataInfinite";
+import { StoreContext } from "../../../../../store/StoreContext";
+import SearchBar from "../../../../partials/SearchBar";
+import TableLoading from "../../../../partials/TableLoading";
+import Loadmore from "../../../../partials/Loadmore";
+import Pills from "../../../../partials/Pills";
+import TableSpinner from "../../../../partials/spinners/TableSpinner";
 import {
   setIsAdd,
   setIsConfirm,
   setIsRestore,
-} from "../../../../store/StoreAction.jsx";
-import { queryDataInfinite } from "../../../helpers/queryDataInfinite.jsx";
-import TableSpinner from "../../../partials/spinners/TableSpinner.jsx";
+} from "../../../../../store/StoreAction";
+import { getUrlParam } from "../../../../helpers/functions-general";
+import ServerError from "../../../../partials/ServerError";
+import Nodata from "../../../../partials/NoData";
 
-const ConfigurationTable = ({ setItemEdit }) => {
+// import SearchBar from "../../../partials/SearchBar.jsx";
+// import TableLoading from "../../../partials/TableLoading.jsx";
+// import Nodata from "../../../partials/NoData.jsx";
+// import ServerError from "../../../partials/ServerError.jsx";
+// import Pills from "../../../partials/Pills.jsx";
+// import Loadmore from "../../../partials/Loadmore.jsx";
+// import { StoreContext } from "../../../../store/StoreContext.jsx";
+// import {
+//   setIsAdd,
+//   setIsConfirm,
+//   setIsRestore,
+// } from "../../../../store/StoreAction.jsx";
+// import { queryDataInfinite } from "../../../helpers/queryDataInfinite.jsx";
+// import TableSpinner from "../../../partials/spinners/TableSpinner.jsx";
+
+const ToolsEngagementTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [dataItem, setData] = React.useState(null);
   const [id, setId] = React.useState(null);
@@ -29,6 +44,7 @@ const ConfigurationTable = ({ setItemEdit }) => {
   const [page, setPage] = React.useState(1);
   const search = React.useRef(null);
   const { ref, inView } = useInView();
+  const toolsId = getUrlParam().get("toolsId");
 
   let counter = 1;
   let active = 0;
@@ -44,11 +60,11 @@ const ConfigurationTable = ({ setItemEdit }) => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["installation", store.isSearch],
+    queryKey: ["tools-engagement", store.isSearch],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/v1/controllers/developer/installation/search.php`, // search endpoint
-        `/v1/controllers/developer/installation/page.php?start=${pageParam}`, // list endpoint // list endpoint
+        `/v1/controllers/developer/tools/info/list/engagement/search.php`, // search endpoint
+        `/v1/controllers/developer/tools/info/list/engagement/page.php?start=${pageParam}`, // list endpoint // list endpoint
         store.isSearch, // search boolean
         "post",
         { search: search.current.value }
@@ -78,21 +94,21 @@ const ConfigurationTable = ({ setItemEdit }) => {
 
   const handleArchive = (item) => {
     dispatch(setIsConfirm(true));
-    setId(item.configuration_aid);
+    setId(item.tools_engagement_aid);
     setData(item);
     setDel(null);
   };
 
   const handleRestore = (item) => {
     dispatch(setIsRestore(true));
-    setId(item.configuration_aid);
+    setId(item.tools_engagement_aid);
     setData(item);
     setDel(null);
   };
 
   const handleDelete = (item) => {
     dispatch(setIsRestore(true));
-    setId(item.configuration_aid);
+    setId(item.tools_engagement_aid);
     setData(item);
     setDel(true);
   };
@@ -115,7 +131,8 @@ const ConfigurationTable = ({ setItemEdit }) => {
             <tr>
               <th>#</th>
               <th>Status</th>
-              <th>Title</th>
+              <th>Engagement ID</th>
+              <th>Name</th>
               <th>Description</th>
               <th className="action lg:hidden"></th>
             </tr>
@@ -144,26 +161,27 @@ const ConfigurationTable = ({ setItemEdit }) => {
             {result?.pages.map((page, key) => (
               <React.Fragment key={key}>
                 {page.data.map((item, key) => {
-                  active += item.configuration_is_active === 1;
-                  inactive += item.configuration_is_active === 0;
+                  active += item.tools_engagement_is_active === 1;
+                  inactive += item.tools_engagement_is_active === 0;
                   return (
                     <tr key={key}>
                       <td>{counter++}.</td>
                       <td>
-                        {item.configuration_is_active === 1 ? (
+                        {item.tools_engagement_is_active === 1 ? (
                           <Pills label="Active" bgc="bg-success" />
                         ) : (
                           <Pills label="Inactive" bgc="bg-archive" />
                         )}
                       </td>
-                      <td>{item.configuration_title}</td>
-                      <td>{item.configuration_description}</td>
+                      <td>{item.tools_engagement_id}</td>
+                      <td>{item.tools_engagement_name}</td>
+                      <td>{item.tools_engagement_description}</td>
 
                       <td
                         className="table__action top-0 right-5 "
                         data-ellipsis=". . ."
                       >
-                        {item.configuration_is_active === 1 ? (
+                        {item.tools_engagement_is_active === 1 ? (
                           <ul className=" flex items-center  gap-4 bg-">
                             <li>
                               <button
@@ -229,10 +247,10 @@ const ConfigurationTable = ({ setItemEdit }) => {
 
       {store.isConfirm && (
         <ModalConfirm
-          mysqlApiArchive={`/v1/controllers/developer/configuration/active.php?configurationId=${id}`}
-          msg={"Are you sure you want to archive this configuration?"}
-          item={dataItem.configuration_title}
-          queryKey={"configuration-sampleOtp"}
+          mysqlApiArchive={`/v1/controllers/developer/tools/info/list/engagement/active.php?toolsEngagementId=${id}`}
+          msg={"Are you sure you want to archive this engagement?"}
+          item={dataItem.tools_engagement_name}
+          queryKey={"tools-engagement"}
         />
       )}
 
@@ -240,19 +258,19 @@ const ConfigurationTable = ({ setItemEdit }) => {
         <ModalDeleteAndRestore
           id={id}
           isDel={isDel}
-          mysqlApiDelete={`/v1/controllers/developer/configuration/configuration.php?configurationId=${id}`}
-          mysqlApiRestore={`/v1/controllers/developer/configuration/active.php?configurationId=${id}`}
+          mysqlApiDelete={`/v1/controllers/developer/tools/info/list/engagement/engagement.php?toolsEngagementId=${id}`}
+          mysqlApiRestore={`/v1/controllers/developer/tools/info/list/engagement/active.php?toolsEngagementId=${id}`}
           msg={
             isDel
-              ? "Are you sure you want to delete this configuration?"
-              : "Are you sure you want to restore this configuration?"
+              ? "Are you sure you want to delete this engagement?"
+              : "Are you sure you want to restore this engagement?"
           }
-          item={dataItem.configuration_title}
-          queryKey={"configuration-sampleOtp"}
+          item={dataItem.tools_engagement_name}
+          queryKey={"tools-engagement"}
         />
       )}
     </>
   );
 };
 
-export default ConfigurationTable;
+export default ToolsEngagementTable;

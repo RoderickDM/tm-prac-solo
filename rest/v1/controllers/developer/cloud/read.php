@@ -3,19 +3,19 @@
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$installation = new Installation($conn);
+$cloud = new Cloud($conn);
 // get $_GET data 
 
-if (array_key_exists("installationId", $_GET) ) {
-    $installation->installation_aid = $_GET['installationId'];
-    checkId($installation->installation_aid);
-    $query = checkReadById($installation);
+if (array_key_exists("cloudId", $_GET) ) {
+    $cloud->cloud_aid = $_GET['cloudId'];
+    checkId($cloud->cloud_aid);
+    $query = checkReadById($cloud);
     http_response_code(200);
     getQueriedData($query);
 }
 
 if (empty($_GET)) {
-    $query = checkReadAll($installation);
+    $query = checkReadAll($cloud);
     http_response_code(200);
     getQueriedData($query);
      

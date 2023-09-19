@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Form, Formik } from "formik";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import * as Yup from "yup";
@@ -9,13 +10,12 @@ import {
   setValidate,
 } from "../../../../store/StoreAction";
 import { StoreContext } from "../../../../store/StoreContext";
-import { InputTextArea, InputText } from "../../../helpers/FormInputs";
+import { InputText, InputTextArea } from "../../../helpers/FormInputs";
 import { handleEscape } from "../../../helpers/functions-general";
 import { queryData } from "../../../helpers/queryData";
 import ButtonSpinner from "../../../partials/spinners/ButtonSpinner";
-import { Form, Formik } from "formik";
 
-const ModalAddInstallation = ({ itemEdit }) => {
+const ModalAddCloud = ({ itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
 
@@ -23,14 +23,14 @@ const ModalAddInstallation = ({ itemEdit }) => {
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `/v1/controllers/developer/installation/installation.php?installationId=${itemEdit.installation_aid}` //update
-          : "/v1/controllers/developer/installation/installation.php", //add
+          ? `/v1/controllers/developer/cloud/cloud.php?cloudId=${itemEdit.cloud_aid}` //update
+          : "/v1/controllers/developer/cloud/cloud.php", //add
         itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["installation"] });
+      queryClient.invalidateQueries({ queryKey: ["cloud"] });
       if (data.success) {
         dispatch(setIsAdd(false));
         dispatch(setSuccess(true));
@@ -45,14 +45,14 @@ const ModalAddInstallation = ({ itemEdit }) => {
   });
 
   const initVal = {
-    installation_aid: itemEdit ? itemEdit.installation_aid : "",
-    installation_title: itemEdit ? itemEdit.installation_title : "",
-    installation_description: itemEdit ? itemEdit.installation_description : "",
+    cloud_aid: itemEdit ? itemEdit.cloud_aid : "",
+    cloud_title: itemEdit ? itemEdit.cloud_title : "",
+    cloud_description: itemEdit ? itemEdit.cloud_description : "",
   };
 
   const yupSchema = Yup.object({
-    installation_title: Yup.string().required("Required"),
-    installation_description: Yup.string().required("Required"),
+    cloud_title: Yup.string().required("Required"),
+    cloud_description: Yup.string().required("Required"),
   });
 
   const handleClose = () => {
@@ -68,9 +68,7 @@ const ModalAddInstallation = ({ itemEdit }) => {
           className={`modal__main absolute mx-1 bg-white border border-gray-200 rounded-md py-8 px-5 max-w-[420px] w-full shadow-xl`}
         >
           <div className="modal__header relative">
-            <h3 className="mb-2">
-              {itemEdit ? "Update" : "Add"} Installation{" "}
-            </h3>
+            <h3 className="mb-2">{itemEdit ? "Update" : "Add"} Cloud </h3>
             <button className="absolute -top-4 right-0 " onClick={handleClose}>
               <FaTimes className="text-gray-700 text-base" />
             </button>
@@ -93,7 +91,7 @@ const ModalAddInstallation = ({ itemEdit }) => {
                         <InputText
                           label="Title"
                           type="text"
-                          name="installation_title"
+                          name="cloud_title"
                           disabled={mutation.isLoading}
                         />
                       </div>
@@ -102,7 +100,7 @@ const ModalAddInstallation = ({ itemEdit }) => {
                         <InputTextArea
                           label="Description"
                           type="text"
-                          name="installation_description"
+                          name="cloud_description"
                           disabled={mutation.isLoading}
                         />
                       </div>
@@ -142,4 +140,4 @@ const ModalAddInstallation = ({ itemEdit }) => {
   );
 };
 
-export default ModalAddInstallation;
+export default ModalAddCloud;

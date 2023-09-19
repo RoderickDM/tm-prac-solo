@@ -26,7 +26,7 @@ import { Link } from "react-router-dom";
 import { devNavUrl } from "../../../helpers/functions-general.jsx";
 // import { consoleLog } from "../../../helpers/functions-general.jsx";
 
-const InstallationList = ({ setItemEdit }) => {
+const ToolsList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [dataItem, setData] = React.useState(null);
   const [id, setId] = React.useState(null);
@@ -48,11 +48,11 @@ const InstallationList = ({ setItemEdit }) => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["installation", store.isSearch],
+    queryKey: ["tools", store.isSearch],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/v1/controllers/developer/installation/search.php`, // search endpoint
-        `/v1/controllers/developer/installation/page.php?start=${pageParam}`, // list endpoint
+        `/v1/controllers/developer/tools/search.php`, // search endpoint
+        `/v1/controllers/developer/tools/page.php?start=${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         "post",
         { search: search.current.value }
@@ -82,21 +82,21 @@ const InstallationList = ({ setItemEdit }) => {
 
   const handleArchive = (item) => {
     dispatch(setIsConfirm(true));
-    setId(item.installation_aid);
+    setId(item.tools_aid);
     setData(item);
     setDel(null);
   };
 
   const handleRestore = (item) => {
     dispatch(setIsRestore(true));
-    setId(item.installation_aid);
+    setId(item.tools_aid);
     setData(item);
     setDel(null);
   };
 
   const handleDelete = (item) => {
     dispatch(setIsRestore(true));
-    setId(item.installation_aid);
+    setId(item.tools_aid);
     setData(item);
     setDel(true);
   };
@@ -151,11 +151,11 @@ const InstallationList = ({ setItemEdit }) => {
             {page.data.map((item, key) => {
               return (
                 <div className="card" key={key}>
-                  {item.installation_is_active === 1 ? (
+                  {item.tools_is_active === 1 ? (
                     <ul className="flex justify-end">
                       <li>
                         <Link
-                          to={`${devNavUrl}/installation/information?installationId=${item.installation_aid}`}
+                          to={`${devNavUrl}/tools/list?toolsId=${item.tools_aid}`}
                         >
                           <button className="tooltip" data-tooltip="View">
                             <GrView />
@@ -185,7 +185,7 @@ const InstallationList = ({ setItemEdit }) => {
                     <ul className="flex justify-end">
                       <li>
                         <Link
-                          to={`${devNavUrl}/installation/information?installationId=${item.installation_aid}`}
+                          to={`${devNavUrl}/tools/list?toolsId=${item.tools_aid}`}
                         >
                           <button className="tooltip" data-tooltip="View">
                             <GrView />
@@ -215,14 +215,14 @@ const InstallationList = ({ setItemEdit }) => {
                   <div className="mx-4">
                     <div className="flex items-center gap-2 mb-4 mx-2">
                       <BsFileEarmarkText className="text-lg" />
-                      <h3 className="truncate">{item.installation_title}</h3>
+                      <h3 className="truncate">{item.tools_title}</h3>
                     </div>
                     <p className="text-guray text-[.8rem] text-left truncate">
-                      {item.installation_description}
+                      {item.tools_description}
                     </p>
                   </div>
                   <div className="text-center">
-                    {item.installation_is_active === 1 ? (
+                    {item.tools_is_active === 1 ? (
                       <Pills label="ACTIVE" tc="text-success" />
                     ) : (
                       <Pills label="INACTIVE" tc="text-archive" />
@@ -248,10 +248,10 @@ const InstallationList = ({ setItemEdit }) => {
 
       {store.isConfirm && (
         <ModalConfirm
-          mysqlApiArchive={`/v1/controllers/developer/installation/active.php?installationId=${id}`}
-          msg={"Are you sure you want to archive this installation?"}
-          item={dataItem.installation_title}
-          queryKey={"installation"}
+          mysqlApiArchive={`/v1/controllers/developer/tools/active.php?toolsId=${id}`}
+          msg={"Are you sure you want to archive this tools?"}
+          item={dataItem.tools_title}
+          queryKey={"tools"}
         />
       )}
 
@@ -259,19 +259,19 @@ const InstallationList = ({ setItemEdit }) => {
         <ModalDeleteAndRestore
           id={id}
           isDel={isDel}
-          mysqlApiDelete={`/v1/controllers/developer/installation/installation.php?installationId=${id}`}
-          mysqlApiRestore={`/v1/controllers/developer/installation/active.php?installationId=${id}`}
+          mysqlApiDelete={`/v1/controllers/developer/tools/tools.php?toolsId=${id}`}
+          mysqlApiRestore={`/v1/controllers/developer/tools/active.php?toolsId=${id}`}
           msg={
             isDel
-              ? "Are you sure you want to delete this installation?"
-              : "Are you sure you want to restore this installation?"
+              ? "Are you sure you want to delete this tools?"
+              : "Are you sure you want to restore this tools?"
           }
-          item={dataItem.installation_title}
-          queryKey={"installation"}
+          item={dataItem.tools_title}
+          queryKey={"tools"}
         />
       )}
     </>
   );
 };
 
-export default InstallationList;
+export default ToolsList;
